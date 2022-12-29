@@ -6,6 +6,15 @@ inputs:
     required: true
     description: 'input description here'
     default: 'test-string'
+outputs:
+  lowercase:
+    description: lowercase
+  uppercase:
+    description: uppercase
+  capitalized:
+    description: capitalized
+  camelcase:
+    description: camelcase
 runs:
   using: 'node16'
   main: 'dist/index.js'
