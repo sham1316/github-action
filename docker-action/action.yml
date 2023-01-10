@@ -47,7 +47,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ inputs.container_registry_url }}/${{ inputs.container_registry_path }}/${{ github.repository }}
+        images: ${{ inputs.container_registry_url }}/${{ inputs.container_registry_path }}/${{ github.event.repository.name }}
         tags: |
           type=ref,suffix=-${{ github.run_number}},event=branch
           type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
@@ -60,6 +60,7 @@ runs:
       with:
         context: ${{ inputs.context_path }}
         builder: ${{steps.builder.outputs.name}}
+        build-args: APP_NAME=${{ github.event.repository.name }}
         pull: false
         push: true
         cache-from: type=gha
