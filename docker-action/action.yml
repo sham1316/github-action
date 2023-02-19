@@ -60,7 +60,9 @@ runs:
       with:
         context: ${{ inputs.context_path }}
         builder: ${{steps.builder.outputs.name}}
-        build-args: APP_NAME=${{ github.event.repository.name }}
+        build-args: |
+          APP_NAME=${{ github.event.repository.name }}
+          git_branch=${{ github.ref_name }}
         pull: false
         push: true
         cache-from: type=gha
