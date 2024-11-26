@@ -21,4 +21,10 @@ chmod +x ./run.sh
 
 echo -e "\033[36mExecuting \033[0m"
 output=$(./run.sh)
+result=$?
 echo "$output"
+
+if [ $result -ne 0 ] ; then
+  echo "Exit code: $result"
+  exit 1
+fi
