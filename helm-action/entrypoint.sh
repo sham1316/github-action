@@ -10,8 +10,13 @@ fi
 
 if [ -n ${INPUT_REPO_URL} ]; then
     echo -e "\033[36mAdd chart repo\033[0m"
-    echo -e "helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL} --username ${INPUT_REPO_USER} --password ${INPUT_REPO_PASS}"
-    helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL} --username ${INPUT_REPO_USER} --password ${INPUT_REPO_PASS}
+    if [ -z  ${INPUT_REPO_USER} ]; then
+      echo -e "helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL}"
+      helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL}
+    else
+      echo -e "helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL} --username ${INPUT_REPO_USER} --password ${INPUT_REPO_PASS}"
+      helm repo add ${INPUT_REPO_ALIAS} ${INPUT_REPO_URL} --username ${INPUT_REPO_USER} --password ${INPUT_REPO_PASS}
+    fi
     helm repo update
 fi
 
