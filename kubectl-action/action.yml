@@ -1,0 +1,15 @@
+# action.yml
+name: 'Kubectl'
+description: 'K8S action'
+inputs:
+  exec:
+    description: 'The command to run '
+    required: true
+  kubeconfig:
+    description: 'Kubeconfig'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.exec }}
