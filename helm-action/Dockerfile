@@ -1,4 +1,4 @@
-FROM alpine/helm:3.16.3
+FROM alpine/helm:3.18.4
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
